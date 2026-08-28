@@ -26,15 +26,25 @@ Portfolio personnel en React, construit à partir de mon CV. L'univers visuel s'
 
 ```
 src/
-├── App.jsx    # composant principal (le portfolio)
-└── App.css    # tous les styles du portfolio
+├── components/          # Composants découpés (.jsx)
+│   ├── Nav.jsx
+│   ├── Hero.jsx
+│   ├── About.jsx
+│   ├── Skills.jsx
+│   ├── Projects.jsx
+│   ├── Experience.jsx
+│   └── Contact.jsx
+├── data.js              # Données texte du CV (PROFILE, PROJECTS, etc.)
+├── theme.css            # Import des polices, réinitialisations et variables de thème (clair/sombre)
+├── App.css              # Styles globaux et mises en page des composants
+└── App.jsx              # Composant principal (assemblage des composants et hooks de thème/effet)
 ```
 
 Le fichier `portfolio.jsx` est organisé en trois blocs commentés :
 
-1. **Données** (`PROFILE`, `SKILL_GROUPS`, `PROJECTS`, `EXPERIENCE`, `EDUCATION`, `LANGUAGES`) — le contenu texte du CV, à modifier ici pour tout mettre à jour
-2. **`useTypewriter`** — petit hook pour l'effet de frappe du hero
-3. **`useTheme`** — hook pour le thème clair/sombre (préférence système au chargement, bascule manuelle ensuite)
+1. **Données** (`data.js`) — les constantes `PROFILE`, `SKILL_GROUPS`, `PROJECTS`, `EXPERIENCE`, `EDUCATION`, `LANGUAGES` contiennent le contenu texte du CV, à modifier ici pour tout mettre à jour
+2. **Composants** (`src/components/`) — chaque section de la page possède son propre composant JSX
+3. **Hooks** (`App.jsx`) — contient `useTypewriter` (effet de frappe du hero) et `useTheme` (thème clair/sombre)
 
 ## Installation
 
