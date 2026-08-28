@@ -27,7 +27,7 @@ Portfolio personnel en React, construit à partir de mon CV. L'univers visuel s'
 ```
 src/
 ├── App.jsx        # composant principal (le portfolio)
-└── App.css     # tous les styles du portfolio
+└── App.css    # tous les styles du portfolio
 ```
 
 Le fichier `portfolio.jsx` est organisé en trois blocs commentés :
