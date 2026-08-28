@@ -81,6 +81,7 @@ const PROJECTS = [
   {
     name: "TaskManager",
     stack: "React · JavaScript",
+    github: "https://github.com/Miorena/TaskManager",
     description:
       "Interface web de gestion de tâches avec gestion d'état (useState) et composants réutilisables.",
     bullets: [
@@ -92,6 +93,7 @@ const PROJECTS = [
   {
     name: "Jeu d'échecs",
     stack: "Java · POO",
+    github: "https://github.com/Miorena/chess-java",
     description:
       "Moteur de jeu d'échecs modélisé en programmation orientée objet, avec architecture en couches.",
     bullets: [
@@ -363,6 +365,16 @@ export default function Portfolio() {
                     <li key={b}>{b}</li>
                   ))}
                 </ul>
+                {project.github && (
+                  <a
+                    className="p-project-link"
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Code2 size={14} /> Voir le repository
+                  </a>
+                )}
               </div>
             ))}
           </div>
