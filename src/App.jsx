@@ -56,14 +56,6 @@ const ABOUT = {
 
 const SKILL_GROUPS = [
   {
-    table: "systemes",
-    title: "Systèmes & réseau",
-    items: [
-      "Linux (Ubuntu, Fedora)",
-      "Réseau Windows (IP, connexions distantes)",
-    ],
-  },
-  {
     table: "langages",
     title: "Langages & frameworks",
     items: ["Java", "JavaScript", "Python", "React", "HTML / CSS"],
@@ -73,6 +65,14 @@ const SKILL_GROUPS = [
     title: "Bases de données & outils",
     items: ["PostgreSQL", "DBeaver", "Git / GitHub", "VS Code"],
   },
+	{
+    table: "systemes",
+    title: "Systèmes & réseau",
+    items: [
+      "Linux (Ubuntu, Fedora)",
+      "Réseau Windows (IP, connexions distantes)",
+    ],
+  }
 ];
 
 const PROJECTS = [
