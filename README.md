@@ -26,7 +26,7 @@ Portfolio personnel en React, construit à partir de mon CV. L'univers visuel s'
 
 ```
 src/
-├── App.jsx        # composant principal (le portfolio)
+├── App.jsx    # composant principal (le portfolio)
 └── App.css    # tous les styles du portfolio
 ```
 
@@ -49,8 +49,9 @@ Puis ouvrir l'URL affichée dans le terminal (en général `http://localhost:517
 ## Personnalisation
 
 - **Contenu** : tout se modifie dans les constantes en haut de `portfolio.jsx` (`PROFILE`, `PROJECTS`, etc.)
-- **Couleurs / thème** : les deux palettes (claire et sombre) sont définies en variables CSS en haut de `portfolio.css`, dans `.portfolio-app` et `.portfolio-app[data-theme="dark"]`
+- **Couleurs / thème** : les deux palettes (claire et sombre) sont définies en variables CSS en haut de `portfolio.css`, dans `.portfolio-app` et `.portfolio-app[data-theme="dark"]`. Les variables `--invert-bg` / `--invert-fg` / `--invert-accent` pilotent les blocs "mis en avant" (bouton principal du hero, carte de contact) — à ajuster ensemble si tu changes une des deux palettes, pour garder un bon contraste avec le fond de page.
 - **Polices** : IBM Plex Mono (titres, labels) et IBM Plex Sans (texte courant), à charger via Google Fonts dans `index.html`
+- **Responsive** : les grilles (`p-skill-grid`, `p-project-grid`) s'adaptent automatiquement en largeur (`auto-fit`) et ne débordent jamais, même sur très petit écran. Trois points de rupture ajustent la mise en page : `640px` (formation/langues passent en 1 colonne), `560px` (timeline expérience en 1 colonne) et `480px` (espacements resserrés pour téléphone, boutons du hero empilés)
 
 ## À faire éventuellement
 
