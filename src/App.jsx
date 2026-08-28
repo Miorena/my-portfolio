@@ -10,8 +10,7 @@ import "./theme.css";
 import "./App.css";
 
 // ----------- Effet machine à écrire pour le hero --------------
-/* Tape le texte `text` caractère par caractère, puis prévient le
-parent (onDone) que l'animation est terminée. Si l'utilisateur a
+/* Tape le texte `text` caractère par caractère. Si l'utilisateur a
 demandé "réduire les animations" dans son système, on affiche le
 texte final directement, sans animation. */
 function useTypewriter(text, { speed = 55, startDelay = 300 } = {}) {
