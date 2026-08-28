@@ -29,7 +29,7 @@ export const SKILL_GROUPS = [
   {
     table: "donnees",
     title: "Bases de données & outils",
-    items: ["PostgreSQL", "DBeaver", "Git / GitHub", "VS Code"],
+    items: ["PostgreSQL", "DBeaver", "Git / GitHub", "VS Code", "Omnis Studio"],
   },
   {
     table: "systemes",
