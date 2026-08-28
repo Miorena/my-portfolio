@@ -44,9 +44,9 @@
   --grid-dot: #262d36;
   --nav-bg: rgba(18, 21, 26, 0.85);
   --terminal-bar: #1f252d;
-  --invert-bg: #e9ebee;
-  --invert-fg: #14181d;
-  --invert-accent: #0e7c66;
+  --invert-bg: #1f6f59;
+  --invert-fg: #f2fffb;
+  --invert-accent: #9cf0d9;
 }
 
 .portfolio-app,
