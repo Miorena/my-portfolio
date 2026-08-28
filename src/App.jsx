@@ -12,6 +12,8 @@ import {
   ArrowUpRight,
   Sun,
   Moon,
+  Menu,
+  X,
 } from "lucide-react";
 import "./App.css";
 
@@ -65,14 +67,14 @@ const SKILL_GROUPS = [
     title: "Bases de données & outils",
     items: ["PostgreSQL", "DBeaver", "Git / GitHub", "VS Code"],
   },
-	{
+  {
     table: "systemes",
     title: "Systèmes & réseau",
     items: [
       "Linux (Ubuntu, Fedora)",
       "Réseau Windows (IP, connexions distantes)",
     ],
-  }
+  },
 ];
 
 const PROJECTS = [
@@ -209,6 +211,11 @@ export default function Portfolio() {
     startDelay: 400,
   });
   const { theme, toggleTheme } = useTheme();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  /* Referme le menu burger quand un lien est cliqué (utile sur mobile,
+  sans quoi le menu resterait ouvert après avoir sauté à la section).*/
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <div className="portfolio-app" data-theme={theme}>
@@ -219,13 +226,26 @@ export default function Portfolio() {
             miorena@dev:~$
           </a>
           <div className="p-nav-right">
-            <div className="p-nav-links">
-              <a href="#about">à propos</a>
-              <a href="#skills">compétences</a>
-              <a href="#projects">projets</a>
-              <a href="#parcours">parcours</a>
-              <a href="#contact">contacts</a>
+            <div
+              className={`p-nav-links${menuOpen ? " p-nav-links-open" : ""}`}
+            >
+              <a href="#about" onClick={closeMenu}>
+                à propos
+              </a>
+              <a href="#skills" onClick={closeMenu}>
+                compétences
+              </a>
+              <a href="#projects" onClick={closeMenu}>
+                projets
+              </a>
+              <a href="#parcours" onClick={closeMenu}>
+                parcours
+              </a>
+              <a href="#contact" onClick={closeMenu}>
+                contacts
+              </a>
             </div>
+            {/* Le thème reste toujours visible, même sur mobile menu fermé */}
             <button
               type="button"
               className="p-theme-toggle"
@@ -237,6 +257,16 @@ export default function Portfolio() {
               }
             >
               {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
+            </button>
+            {/* Burger visible uniquement sur petit écran (voir CSS) */}
+            <button
+              type="button"
+              className="p-burger"
+              onClick={() => setMenuOpen((open) => !open)}
+              aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? <X size={18} /> : <Menu size={18} />}
             </button>
           </div>
         </div>
