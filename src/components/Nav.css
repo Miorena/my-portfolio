@@ -1,0 +1,112 @@
+.p-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--nav-bg);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.p-nav-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.p-nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.p-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 0;
+}
+.p-theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--line-strong);
+}
+.p-nav-inner .p-nav-logo {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+.p-nav-inner .p-nav-logo:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+.p-nav-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.p-nav-links a {
+  color: var(--ink-soft);
+}
+.p-nav-links a:hover {
+  color: var(--accent);
+}
+
+/* Burger : masqué par défaut (desktop), affiché seulement en media
+   query ci-dessous. Même gabarit que .p-theme-toggle pour rester
+   aligné avec lui dans la nav. */
+.p-burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 0;
+}
+.p-burger:hover {
+  color: var(--accent);
+  border-color: var(--line-strong);
+}
+
+@media (max-width: 640px) {
+  .p-burger {
+    display: flex;
+  }
+  .p-nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 8px 24px 16px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--line);
+  }
+  .p-nav-links a {
+    width: 100%;
+    padding: 10px 0;
+  }
+  .p-nav-links-open {
+    display: flex;
+  }
+}

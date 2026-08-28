@@ -1,0 +1,96 @@
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.portfolio-app {
+  --bg: #eef0f3;
+  --panel: #ffffff;
+  --ink: #14181d;
+  --ink-soft: #545d66;
+  --accent: #0e7c66;
+  --accent-soft: #e1eeea;
+  --amber: #b4691e;
+  --amber-soft: #f3e6d4;
+  --line: #d3d8dd;
+  --line-strong: #aeb6be;
+  --grid-dot: #c3c9cf;
+  --nav-bg: rgba(238, 240, 243, 0.9);
+  --terminal-bar: #f5f6f8;
+  --invert-bg: #14181d;
+  --invert-fg: #edeff1;
+  --invert-accent: #6fd9bc;
+  --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+  --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Thème sombre : mêmes rôles de couleur, valeurs inversées.
+Porté par un attribut data-theme plutôt qu'une media query seule,
+pour que le bouton de bascule puisse le forcer manuellement. */
+.portfolio-app[data-theme="dark"] {
+  --bg: #12151a;
+  --panel: #1b2027;
+  --ink: #e9ebee;
+  --ink-soft: #9ba3ac;
+  --accent: #4fd9b3;
+  --accent-soft: rgba(79, 217, 179, 0.14);
+  --amber: #e6ac5c;
+  --amber-soft: rgba(230, 172, 92, 0.14);
+  --line: #2b323b;
+  --line-strong: #3b434e;
+  --grid-dot: #262d36;
+  --nav-bg: rgba(18, 21, 26, 0.85);
+  --terminal-bar: #1f252d;
+  --invert-bg: #1f6f59;
+  --invert-fg: #f2fffb;
+  --invert-accent: #9cf0d9;
+}
+
+.portfolio-app,
+.portfolio-app * {
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-app,
+  .portfolio-app * {
+    transition: none !important;
+  }
+}
+
+.portfolio-app ::selection {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Personnalisation de la barre de défilement */
+.portfolio-app::-webkit-scrollbar {
+  width: 8px;
+}
+
+.portfolio-app::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+.portfolio-app::-webkit-scrollbar-thumb {
+  background-color: var(--line-strong);
+  border-radius: 4px;
+}
