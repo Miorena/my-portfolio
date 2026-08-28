@@ -50,6 +50,10 @@ const PROFILE = {
   ],
 };
 
+const ABOUT = {
+  text: "Développeur Junior spécialisé en génie logiciel et bases de données relationnelles. Je travaille régulièrement sur la modélisation de schémas PostgreSQL, la rédaction de requêtes SQL et le développement de logiciels métier sur mesure. En développement applicatif, je m'appuie sur la programmation orientée objet (notamment en Java) pour concevoir des architectures bien structurées et maintenables, tout en utilisant JavaScript et Python selon les besoins. À titre personnel, j'évolue sous Linux (Fedora, Ubuntu), ce qui me permet d'être à l'aise avec cet environnement.",
+};
+
 const SKILL_GROUPS = [
   {
     table: "systemes",
@@ -216,11 +220,11 @@ export default function Portfolio() {
           </a>
           <div className="p-nav-right">
             <div className="p-nav-links">
-              <a href="#about">about</a>
-              <a href="#skills">skills</a>
-              <a href="#projects">projects</a>
+              <a href="#about">à propos</a>
+              <a href="#skills">compétences</a>
+              <a href="#projects">projets</a>
               <a href="#parcours">parcours</a>
-              <a href="#contact">contact</a>
+              <a href="#contact">contacts</a>
             </div>
             <button
               type="button"
@@ -282,7 +286,7 @@ export default function Portfolio() {
         <section className="p-section" id="about">
           <p className="p-eyebrow">/* profil.md */</p>
           <div className="p-about-card">
-            <p className="p-about-text">{PROFILE.summary}</p>
+            <p className="p-about-text">{ABOUT.text}</p>
             <div className="p-tags">
               {PROFILE.qualities.map((q) => (
                 <span className="p-tag" key={q}>
@@ -315,7 +319,7 @@ export default function Portfolio() {
 
         {/* PROJECTS */}
         <section className="p-section" id="projects">
-          <p className="p-eyebrow">$ ls ~/projects</p>
+          <p className="p-eyebrow">$ ls ~/projets</p>
           <div className="p-project-grid">
             {PROJECTS.map((project) => (
               <div className="p-project-card" key={project.name}>
@@ -392,7 +396,7 @@ export default function Portfolio() {
         <section className="p-footer" id="contact">
           <div className="p-contact-card">
             <p className="p-contact-prompt">
-              $ contact --email {PROFILE.email} --tel "{PROFILE.phone}"
+              $ contacts --email {PROFILE.email} --tel "{PROFILE.phone}"
             </p>
             <div className="p-contact-links">
               <a className="p-contact-link" href={`mailto:${PROFILE.email}`}>

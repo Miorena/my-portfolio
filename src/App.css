@@ -156,6 +156,7 @@
 /* --- hero --- */
 .p-hero {
   padding: 64px 0 56px;
+  scroll-margin-top: 70px;
 }
 .p-terminal {
   background: var(--panel);
@@ -293,6 +294,7 @@
 .p-section {
   padding: 48px 0;
   border-top: 1px solid var(--line);
+  scroll-margin-top: 58px;
 }
 .p-eyebrow {
   font-family: var(--mono);
