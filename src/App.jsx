@@ -55,13 +55,24 @@ function useTypewriter(text, { speed = 55, startDelay = 300 } = {}) {
 Ensuite, seul le clic sur le bouton de la nav change le thème : on ne
 réécoute pas les changements système après coup, pour que le choix
 manuel de la personne reste toujours prioritaire. */
+const THEME_STORAGE_KEY = "portfolio-theme";
+
 function useTheme() {
   const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return "light";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
+    if (typeof window === "undefined") return "light";
+
+    const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
+    if (saved === "light" || saved === "dark") return saved;
+
+    return window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light";
   });
+
+  useEffect(() => {
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  }, [theme]);
 
   const toggleTheme = () =>
     setTheme((current) => (current === "dark" ? "light" : "dark"));
