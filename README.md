@@ -7,14 +7,18 @@
 
 Portfolio personnel en React, construit à partir de mon CV. L'univers visuel s'inspire du quotidien d'un développeur backend/BD : terminal, prompt shell, requêtes SQL — plutôt qu'un template générique.
 
+**En ligne :** [my-portfolio-navy-eight-86.vercel.app](https://my-portfolio-navy-eight-86.vercel.app/)
+
 ## Aperçu
 
-- Hero façon fenêtre de terminal, avec une commande `$ whoami` qui s'affiche en machine à écrire
-- Sections stylées comme des artefacts de développeur : commentaire de code (`/* profil.md */`), requête SQL (`SELECT * FROM competences;`), commande shell (`$ ls ~/projects`)
+- Hero façon fenêtre de terminal, avec une commande `$ whoami` qui s'affiche en machine à écrire, et une photo affichée dans une seconde mini-fenêtre du même style, à côté
+- Sections stylées comme des artefacts de développeur : commentaire de code (`/* profil.md */`), requête SQL (`SELECT * FROM competences;`), commande shell (`$ ls ~/projets`)
+- Chaque projet renvoie vers son dépôt GitHub
 - Thème clair / sombre, avec bouton de bascule dans la nav et détection automatique de la préférence système au premier chargement
+- Menu burger sur petit écran
 - Fond en trame de points, discret, façon papier technique
 - Entièrement responsive (mobile, tablette, desktop)
-- Anime le strict nécessaire, et respecte `prefers-reduced-motion`
+- Anime le strict nécessaire (apparition en cascade du hero, curseur clignotant), et respecte `prefers-reduced-motion`
 
 ## Stack
 
@@ -26,25 +30,27 @@ Portfolio personnel en React, construit à partir de mon CV. L'univers visuel s'
 
 ```
 src/
-├── components/          # Composants découpés (.jsx)
-│   ├── Nav.jsx
-│   ├── Hero.jsx
-│   ├── About.jsx
-│   ├── Skills.jsx
-│   ├── Projects.jsx
-│   ├── Experience.jsx
-│   └── Contact.jsx
-├── data.js              # Données texte du CV (PROFILE, PROJECTS, etc.)
-├── theme.css            # Import des polices, réinitialisations et variables de thème (clair/sombre)
-├── App.css              # Styles globaux et mises en page des composants
-└── App.jsx              # Composant principal (assemblage des composants et hooks de thème/effet)
+├── assets/
+│   └── miorena.jpg       # photo affichée dans le hero
+├── components/            # un composant + un CSS par section
+│   ├── Nav.jsx / Nav.css
+│   ├── Hero.jsx / Hero.css
+│   ├── About.jsx / About.css
+│   ├── Skills.jsx / Skills.css
+│   ├── Projects.jsx / Projects.css
+│   ├── Experience.jsx / Experience.css
+│   └── Contact.jsx / Contact.css
+├── data.js                # données texte du CV (PROFILE, PROJECTS, etc.)
+├── theme.css              # polices, reset global, variables de thème (clair/sombre)
+├── App.css                # utilitaires de mise en page partagés (.p-shell, .p-section...)
+└── App.jsx                # assemble les composants, contient useTypewriter et useTheme
 ```
 
-Le fichier `portfolio.jsx` est organisé en trois blocs commentés :
+Le projet est organisé en trois blocs :
 
-1. **Données** (`data.js`) — les constantes `PROFILE`, `SKILL_GROUPS`, `PROJECTS`, `EXPERIENCE`, `EDUCATION`, `LANGUAGES` contiennent le contenu texte du CV, à modifier ici pour tout mettre à jour
-2. **Composants** (`src/components/`) — chaque section de la page possède son propre composant JSX
-3. **Hooks** (`App.jsx`) — contient `useTypewriter` (effet de frappe du hero) et `useTheme` (thème clair/sombre)
+1. **Données** (`data.js`) — les constantes `PROFILE`, `SKILL_GROUPS`, `PROJECTS`, `EXPERIENCE`, `EDUCATION`, `LANGUAGES` contiennent le contenu texte du CV ; chaque composant importe directement ce dont il a besoin
+2. **Composants** (`src/components/`) — chaque section de la page a son propre fichier `.jsx` + `.css`
+3. **Hooks** (`App.jsx`) — `useTypewriter` (effet de frappe du hero) et `useTheme` (thème clair/sombre : préférence système au chargement, bascule manuelle ensuite)
 
 ## Installation
 
@@ -56,14 +62,23 @@ npm run dev
 
 Puis ouvrir l'URL affichée dans le terminal (en général `http://localhost:5173`).
 
+## Déploiement
+
+Hébergé sur **Vercel**, connecté au dépôt GitHub — chaque `push` sur `master` redéploie automatiquement.
+
+Deux points bloquants rencontrés en le mettant en place, à connaître si le build échoue un jour :
+- `package.json` et `package-lock.json` ne doivent **jamais** être dans `.gitignore` — sans eux sur GitHub, Vercel n'a rien à installer (`vite: command not found`)
+- Si le site demande une authentification à l'ouverture, c'est l'option **Deployment Protection** de Vercel (réglages du projet) — à désactiver pour un accès public
+
 ## Personnalisation
 
-- **Contenu** : tout se modifie dans les constantes en haut de `portfolio.jsx` (`PROFILE`, `PROJECTS`, etc.)
-- **Couleurs / thème** : les deux palettes (claire et sombre) sont définies en variables CSS en haut de `portfolio.css`, dans `.portfolio-app` et `.portfolio-app[data-theme="dark"]`. Les variables `--invert-bg` / `--invert-fg` / `--invert-accent` pilotent les blocs "mis en avant" (bouton principal du hero, carte de contact) — à ajuster ensemble si tu changes une des deux palettes, pour garder un bon contraste avec le fond de page.
+- **Contenu** : tout se modifie dans les constantes de `data.js` (`PROFILE`, `PROJECTS`, etc.)
+- **Photo** : place une image carrée dans `src/assets/` et ajuste le nom importé dans `Hero.jsx` (`import photo from "../assets/miorena.jpg"`)
+- **Couleurs / thème** : les deux palettes (claire et sombre) sont définies en variables CSS en haut de `theme.css`, dans `.portfolio-app` et `.portfolio-app[data-theme="dark"]`. Les variables `--invert-bg` / `--invert-fg` / `--invert-accent` pilotent les blocs "mis en avant" (bouton principal du hero, carte de contact) — à ajuster ensemble si tu changes une des deux palettes, pour garder un bon contraste avec le fond de page
+- **Liens de couleur** : la règle globale dans `App.css` utilise `.portfolio-app :where(a)` plutôt que `.portfolio-app a` — `:where()` neutralise sa spécificité, pour qu'un composant puisse toujours redéfinir la couleur d'un lien avec une simple classe, sans conflit
 - **Polices** : IBM Plex Mono (titres, labels) et IBM Plex Sans (texte courant), à charger via Google Fonts dans `index.html`
-- **Responsive** : les grilles (`p-skill-grid`, `p-project-grid`) s'adaptent automatiquement en largeur (`auto-fit`) et ne débordent jamais, même sur très petit écran. Trois points de rupture ajustent la mise en page : `640px` (formation/langues passent en 1 colonne), `560px` (timeline expérience en 1 colonne) et `480px` (espacements resserrés pour téléphone, boutons du hero empilés)
+- **Responsive** : les grilles (`p-skill-grid`, `p-project-grid`) s'adaptent automatiquement en largeur (`auto-fit`) et ne débordent jamais, même sur très petit écran. Points de rupture : `640px` (formation/langues en 1 colonne, menu nav en burger), `560px` (timeline expérience en 1 colonne) et `480px` (espacements resserrés pour téléphone, boutons du hero empilés)
 
 ## À faire éventuellement
 
 - Persister le choix de thème (actuellement en mémoire uniquement, repart de la préférence système au rechargement)
-- Ajouter un lien GitHub / réseaux une fois disponibles
