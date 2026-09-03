@@ -10,6 +10,10 @@
   .p-hero {
     grid-template-columns: 1fr;
   }
+	.p-photo-frame {
+		order: -1;
+		margin: 0 auto;
+	}
 }
 .p-terminal {
   background: var(--panel);
