@@ -1,5 +1,6 @@
 import { Mail } from "lucide-react";
 import { PROFILE } from "../data";
+import photo from "../assets/Miorena.jpeg";
 import "./Hero.css";
 
 export default function Hero({ typed, typedDone }) {
@@ -39,6 +40,15 @@ export default function Hero({ typed, typedDone }) {
             </div>
           )}
         </div>
+      </div>
+      <div className="p-photo-frame">
+        <div className="p-photo-bar">
+          <span className="p-dot" />
+          <span className="p-dot" />
+          <span className="p-dot" />
+          <span className="p-photo-title">Miorena.jpeg</span>
+        </div>
+        <img src={photo} alt="Ma portrait photo" className="p-photo-img" />
       </div>
     </section>
   );
