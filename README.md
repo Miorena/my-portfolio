@@ -32,7 +32,7 @@ Portfolio personnel en React, construit à partir de mon CV. L'univers visuel s'
 src/
 ├── assets/
 │   └── miorena.jpg       # photo affichée dans le hero
-├── components/            # un composant + un CSS par section
+├── components/            # un composant + un CSS par composant
 │   ├── Nav.jsx / Nav.css
 │   ├── Hero.jsx / Hero.css
 │   ├── About.jsx / About.css
