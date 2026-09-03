@@ -14,7 +14,7 @@ Portfolio personnel en React, construit à partir de mon CV. L'univers visuel s'
 - Hero façon fenêtre de terminal, avec une commande `$ whoami` qui s'affiche en machine à écrire, et une photo affichée dans une seconde mini-fenêtre du même style, à côté
 - Sections stylées comme des artefacts de développeur : commentaire de code (`/* profil.md */`), requête SQL (`SELECT * FROM competences;`), commande shell (`$ ls ~/projets`)
 - Chaque projet renvoie vers son dépôt GitHub
-- Thème clair / sombre, avec bouton de bascule dans la nav et détection automatique de la préférence système au premier chargement
+- Thème clair / sombre, avec bouton de bascule dans la nav, détection automatique de la préférence système au premier chargement, et choix mémorisé d'une visite à l'autre
 - Menu burger sur petit écran
 - Fond en trame de points, discret, façon papier technique
 - Entièrement responsive (mobile, tablette, desktop)
@@ -50,7 +50,7 @@ Le projet est organisé en trois blocs :
 
 1. **Données** (`data.js`) — les constantes `PROFILE`, `SKILL_GROUPS`, `PROJECTS`, `EXPERIENCE`, `EDUCATION`, `LANGUAGES` contiennent le contenu texte du CV ; chaque composant importe directement ce dont il a besoin
 2. **Composants** (`src/components/`) — chaque section de la page a son propre fichier `.jsx` + `.css`
-3. **Hooks** (`App.jsx`) — `useTypewriter` (effet de frappe du hero) et `useTheme` (thème clair/sombre : préférence système au chargement, bascule manuelle ensuite)
+3. **Hooks** (`App.jsx`) — `useTypewriter` (effet de frappe du hero) et `useTheme` (thème clair/sombre : lit d'abord un choix déjà enregistré dans `localStorage`, sinon la préférence système ; chaque bascule manuelle réécrit ce choix)
 
 ## Installation
 
@@ -78,7 +78,3 @@ Deux points bloquants rencontrés en le mettant en place, à connaître si le bu
 - **Liens de couleur** : la règle globale dans `App.css` utilise `.portfolio-app :where(a)` plutôt que `.portfolio-app a` — `:where()` neutralise sa spécificité, pour qu'un composant puisse toujours redéfinir la couleur d'un lien avec une simple classe, sans conflit
 - **Polices** : IBM Plex Mono (titres, labels) et IBM Plex Sans (texte courant), à charger via Google Fonts dans `index.html`
 - **Responsive** : les grilles (`p-skill-grid`, `p-project-grid`) s'adaptent automatiquement en largeur (`auto-fit`) et ne débordent jamais, même sur très petit écran. Points de rupture : `640px` (formation/langues en 1 colonne, menu nav en burger), `560px` (timeline expérience en 1 colonne) et `480px` (espacements resserrés pour téléphone, boutons du hero empilés)
-
-## À faire éventuellement
-
-- Persister le choix de thème (actuellement en mémoire uniquement, repart de la préférence système au rechargement)
