@@ -6,7 +6,7 @@ export const PROFILE = {
   email: "miorenafinaritra@gmail.com",
   phone: "+261 38 92 192 10",
   summary:
-    "Développeur junior de 20 ans, formé en génie logiciel avec une base solide en bases de données. À l'aise avec le cycle de développement agile, je m'adapte vite aux outils et pratiques d'une équipe — et je cherche un projet ambitieux pour continuer à progresser.",
+    "Développeur junior de 20 ans, formé en génie logiciel avec une base solide en bases de données. À l'aise avec le cycle de développement agile, je m'adapte vite aux outils et pratiques d'une équipe, et je cherche un projet ambitieux pour continuer à progresser.",
   qualities: [
     "Autonome",
     "Curieux",
@@ -70,9 +70,9 @@ export const PROJECTS = [
 
 export const EXPERIENCE = [
   {
-    role: "Développeur de base de données — poste junior",
+    role: "Développeur de base de données - poste junior",
     place: "OBS-OI · Osmosis Business Solutions Océan Indien",
-    period: "Mars 2026 — en cours",
+    period: "Mars 2026 - en cours",
     bullets: [
       "Conception de logiciels métier sur mesure avec Omnis Studio (environnement RAD orienté BD)",
       "Modélisation, optimisation et administration de bases PostgreSQL avec DBeaver",
@@ -80,9 +80,9 @@ export const EXPERIENCE = [
     ],
   },
   {
-    role: "Assistant commercial — stage d'observation",
+    role: "Assistant commercial - stage d'observation",
     place: "Garage automobile, Mahajanga",
-    period: "Juin — août 2023",
+    period: "Juin - août 2023",
     bullets: [
       "Appui à la relation client et suivi des dossiers commerciaux",
       "Rédaction de comptes rendus et organisation de données clients",
@@ -92,7 +92,7 @@ export const EXPERIENCE = [
 
 export const EDUCATION = [
   {
-    title: "Licence Informatique — Génie logiciel et base de données",
+    title: "Licence Informatique - Génie logiciel et base de données",
     place: "PEF / UPEF (cours en ligne), Antananarivo",
     period: "En cours",
   },

@@ -27,7 +27,7 @@ export default function Contact() {
       </div>
       <p className="p-footnote">
         <Terminal size={11} style={{ verticalAlign: "-1px", marginRight: 4 }} />
-        {PROFILE.fullName} — construit avec React
+        {PROFILE.fullName} - construit avec React
       </p>
     </section>
   );
