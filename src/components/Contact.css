@@ -24,7 +24,9 @@
   gap: 10px;
   font-family: var(--mono);
   font-size: 14px;
-  color: var(--invert-fg);
+}
+.p-contact-card .p-contact-link {
+	color: var(--invert-fg);
 }
 .p-contact-link:hover {
   color: var(--invert-accent);

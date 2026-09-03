@@ -183,8 +183,7 @@
   border-color: var(--invert-bg);
 }
 .p-btn-primary:hover {
-  opacity: 0.85;
-  text-decoration: none;
+	color: var(--invert-accent);
 }
 .p-btn-ghost {
   color: var(--ink);

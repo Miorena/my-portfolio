@@ -7,7 +7,7 @@ export default function Contact() {
     <section className="p-footer" id="contact">
       <div className="p-contact-card">
         <p className="p-contact-prompt">
-          $ contacts --email {PROFILE.email} --tel "{PROFILE.phone}"
+          $ contacts --email & --tel
         </p>
         <div className="p-contact-links">
           <a className="p-contact-link" href={`mailto:${PROFILE.email}`}>

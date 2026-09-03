@@ -2,11 +2,11 @@
   box-sizing: border-box;
 }
 
-.portfolio-app a {
+.portfolio-app :where(a) {
   color: var(--accent);
   text-decoration: none;
 }
-.portfolio-app a:hover {
+.portfolio-app :where(a):hover {
   text-decoration: underline;
 }
 
