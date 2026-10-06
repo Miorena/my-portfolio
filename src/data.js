@@ -26,6 +26,7 @@ export const SKILL_GROUPS = [
     title: "Langages & frameworks",
     items: [
       "JavaScript",
+      "TypeScipt",
       "Node.js",
       "NestJS",
       "Java",
@@ -84,6 +85,19 @@ export const PROJECTS = [
       "Validation des coups, chemins bloqués, captures",
       "Architecture modèle / contrôleur, versionnée sur Git",
     ],
+  },
+  {
+    name: "Velène",
+    stack: "Angular · TypeScript",
+    github: "https://github.com/Miorena/eCommerce-Angular",
+    description:
+      "Application web e-commerce développée avec Angular, permettant de parcourir un catalogue de produits et de gérer un panier d'achat.",
+    bullets: [
+			"Catalogue de produits avec filtrage et recherche",
+			"Panier avec ajout et suppression d'articles et affichage du total en temps réel",
+			"Architecture en composants et services Angular, TypeScript",
+			"Versionné sur GitHub",
+		],
   },
 ];
 
