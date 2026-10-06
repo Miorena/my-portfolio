@@ -87,7 +87,7 @@ export const PROJECTS = [
     ],
   },
   {
-    name: "Velène",
+    name: "Site eCommerce (Velène)",
     stack: "Angular · TypeScript",
     github: "https://github.com/Miorena/eCommerce-Angular",
     description:
