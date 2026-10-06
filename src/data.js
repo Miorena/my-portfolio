@@ -24,7 +24,7 @@ export const SKILL_GROUPS = [
   {
     table: "langages",
     title: "Langages & frameworks",
-    items: ["Java", "JavaScript", "Python", "React", "HTML / CSS"],
+    items: ["JavaScript", "Node.js", "NestJS", "Java", "Python", "React", "Angular", "HTML / CSS"],
   },
   {
     table: "donnees",
