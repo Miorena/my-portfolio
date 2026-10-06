@@ -83,7 +83,8 @@ export const PROJECTS = [
     bullets: [
       "Hiérarchie de classes (héritage, classes abstraites) pour les pièces",
       "Validation des coups, chemins bloqués, captures",
-      "Architecture modèle / contrôleur, versionnée sur Git",
+      "Architecture modèle / contrôleur",
+			"Versionnée sur Git"
     ],
   },
   {
