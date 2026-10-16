@@ -50,34 +50,54 @@ function useTypewriter(text, { speed = 55, startDelay = 300 } = {}) {
   return { output, done };
 }
 
-// ----------------------- Thème clair / sombre ----------------------------
-/* Au premier rendu, on part de la préférence système (prefers-color-scheme).
-Ensuite, seul le clic sur le bouton de la nav change le thème : on ne
-réécoute pas les changements système après coup, pour que le choix
-manuel de la personne reste toujours prioritaire. */
+// ----------------------- Thème clair / sombre / système ------------------
+/* Deux notions distinctes :
+   - `preference` : ce que la personne a choisi dans le menu
+     ("light", "dark" ou "system"), enregistré dans localStorage ;
+   - `theme` : le thème réellement appliqué ("light" ou "dark"). Si la
+     préférence est "system", il suit le thème de l'OS, et change en
+     direct quand l'OS bascule (ex. passage automatique jour/nuit). */
 const THEME_STORAGE_KEY = "portfolio-theme";
+const PREFERENCES = ["light", "dark", "system"];
+const DARK_QUERY = "(prefers-color-scheme: dark)";
+
+const getSystemTheme = () =>
+  window.matchMedia(DARK_QUERY).matches ? "dark" : "light";
 
 function useTheme() {
-  const [theme, setTheme] = useState(() => {
-    if (typeof window === "undefined") return "light";
-
-    const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
-    if (saved === "light" || saved === "dark") return saved;
-
-    return window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+  const [preference, setPreference] = useState(() => {
+    // localStorage peut être inaccessible (navigation privée, etc.)
+    try {
+      const saved = window.localStorage.getItem(THEME_STORAGE_KEY);
+      if (PREFERENCES.includes(saved)) return saved;
+    } catch {
+      /* on retombe sur "system" */
+    }
+    return "system";
   });
+  const [systemTheme, setSystemTheme] = useState(getSystemTheme);
 
+  // Suit les changements du thème de l'OS en continu
   useEffect(() => {
-    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
-  }, [theme]);
+    const media = window.matchMedia(DARK_QUERY);
+    const onChange = (event) =>
+      setSystemTheme(event.matches ? "dark" : "light");
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
 
-  const toggleTheme = () =>
-    setTheme((current) => (current === "dark" ? "light" : "dark"));
+  // Mémorise le choix pour les prochaines visites
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, preference);
+    } catch {
+      /* pas grave : le choix vaudra juste pour cette session */
+    }
+  }, [preference]);
 
-  return { theme, toggleTheme };
+  const theme = preference === "system" ? systemTheme : preference;
+
+  return { preference, setPreference, theme };
 }
 
 // -------------------- Composant principal --------------------------
@@ -86,11 +106,11 @@ export default function App() {
     speed: 90,
     startDelay: 400,
   });
-  const { theme, toggleTheme } = useTheme();
+  const { preference, setPreference, theme } = useTheme();
 
   return (
     <div className="portfolio-app" data-theme={theme}>
-      <Nav theme={theme} toggleTheme={toggleTheme} />
+      <Nav preference={preference} setPreference={setPreference} />
       <main className="p-shell">
         <Hero typed={typed} typedDone={typedDone} />
         <About />

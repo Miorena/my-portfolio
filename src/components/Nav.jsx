@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Sun, Moon, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import "./Nav.css";
+import ThemeMenu from "./ThemeMenu";
 
-export default function Nav({ theme, toggleTheme }) {
+export default function Nav({ preference, setPreference }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
@@ -32,18 +33,7 @@ export default function Nav({ theme, toggleTheme }) {
             </a>
           </div>
           {/* Le thème reste toujours visible, même sur mobile menu fermé */}
-          <button
-            type="button"
-            className="p-theme-toggle"
-            onClick={toggleTheme}
-            aria-label={
-              theme === "dark"
-                ? "Passer au thème clair"
-                : "Passer au thème sombre"
-            }
-          >
-            {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
-          </button>
+          <ThemeMenu preference={preference} setPreference={setPreference} />
           {/* Burger visible uniquement sur petit écran (voir CSS) */}
           <button
             type="button"

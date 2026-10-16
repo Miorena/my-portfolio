@@ -1,0 +1,68 @@
+/* Conteneur : sert de repère de positionnement à la liste déroulante */
+.p-theme-menu {
+  position: relative;
+}
+
+/* Bouton de la nav (même gabarit que le burger) */
+.p-theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 0;
+}
+.p-theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--line-strong);
+}
+
+/* Liste déroulante, alignée à droite sous le bouton */
+.p-theme-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 20;
+  min-width: 150px;
+  margin: 0;
+  padding: 4px;
+  list-style: none;
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.p-theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+.p-theme-option:hover,
+.p-theme-option:focus-visible {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+/* Le choix actif ressort légèrement, avec une coche à droite */
+.p-theme-option[aria-checked="true"] {
+  color: var(--ink);
+}
+.p-theme-check {
+  margin-left: auto;
+  color: var(--accent);
+}
