@@ -1,20 +1,78 @@
-.p-project-grid {
+/* Slider : une slide = un projet, défilement horizontal avec accroche (snap).
+   Fonctionne au doigt sur mobile, à la molette/trackpad, et via les points. */
+/* Ligne : flèche | slider | flèche */
+.p-slider {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
-  gap: 18px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
 }
+.p-slider-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    opacity 0.2s;
+}
+.p-slider-arrow:hover:not(:disabled) {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.p-slider-arrow:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.p-slider-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.p-slider-track {
+  display: flex;
+  gap: 24px; /* espace visible entre deux cartes pendant la transition */
+  overflow-x: auto;
+  overscroll-behavior-x: contain; /* évite le "retour page" du navigateur en fin de course */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  border-radius: 10px;
+}
+.p-slider-track::-webkit-scrollbar {
+  display: none;
+}
+.p-slider-track:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.p-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  /* Impose un arrêt à chaque slide : un geste de trackpad avance d'un
+     projet à la fois, au lieu d'en enchaîner plusieurs avec l'inertie */
+  scroll-snap-stop: always;
+  display: flex; /* la carte s'étire à la hauteur de la plus grande */
+}
+
+/* Carte projet */
 .p-project-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 22px 24px;
-}
-@media (min-width: 640px) {
-	.p-project-card:last-child:nth-child(odd) {
-		grid-column: 1 / -1;
-		justify-self: center;
-		width: calc(50% - 9px);
-	}
 }
 .p-project-head {
   display: flex;
@@ -33,7 +91,7 @@
   font-family: var(--mono);
   font-size: 11.5px;
   color: var(--amber);
-  background: var(--amber-soft);
+  background: color-mix(in srgb, var(--amber) 14%, transparent);
   padding: 3px 8px;
   border-radius: 5px;
   white-space: nowrap;
@@ -44,27 +102,82 @@
   margin: 8px 0 14px;
 }
 .p-project-bullets {
-  margin: 0;
+  margin: 0 0 18px;
   padding-left: 18px;
   font-size: 13.5px;
 }
 .p-project-bullets li {
   margin-bottom: 5px;
 }
+
+/* Lien poussé en bas de la carte, quelle que soit la hauteur du contenu */
 .p-project-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 16px;
-  font-family: var(--mono);
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--ink-soft);
-  border-top: 1px solid var(--line);
+  align-self: flex-start;
+  margin-top: auto;
   padding-top: 14px;
+  border-top: 1px solid var(--line);
   width: 100%;
-}
-.p-project-link:hover {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
   color: var(--accent);
   text-decoration: none;
+}
+.p-project-link:hover {
+  text-decoration: underline;
+}
+
+/* Points de pagination */
+.p-slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.p-slider-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--line-strong);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.p-slider-dot:hover {
+  background: var(--ink-soft);
+}
+.p-slider-dot-active {
+  background: var(--accent);
+  transform: scale(1.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .p-slider-track {
+    scroll-behavior: auto;
+  }
+  .p-slider-dot {
+    transition: none;
+  }
+}
+
+/* Tablette / mobile : pas de flèches, on glisse au doigt et on a les points */
+@media (max-width: 720px) {
+  .p-slider {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .p-slider-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .p-project-card {
+    padding: 16px 18px;
+  }
 }
