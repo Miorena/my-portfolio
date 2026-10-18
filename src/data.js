@@ -23,30 +23,23 @@ export const ABOUT = {
 export const SKILL_GROUPS = [
   {
     table: "langages",
-    title: "Langages & frameworks",
-    items: [
-      "JavaScript",
-      "TypeScipt",
-      "Node.js",
-      "NestJS",
-      "Java",
-      "React",
-      "Angular",
-			"Python",
-      "HTML / CSS",
-    ],
+    title: "Langages",
+    items: ["JavaScript", "Java", "TypeScipt", "Python", "HTML / CSS"],
+  },
+  {
+    table: "frameworks",
+    title: "Frameworks & runtime",
+    items: ["React", "Angular", "Node.js", "NestJS"],
   },
   {
     table: "donnees",
-    title: "Bases de données & outils",
-    items: [
-      "PostgreSQL",
-      "DBeaver",
-      "Git / GitHub",
-      "VS Code",
-      "Postman",
-      "Omnis Studio",
-    ],
+    title: "Bases de données",
+    items: ["SQL", "PostgreSQL", "DBeaver"],
+  },
+  {
+    table: "outils",
+    title: "Outils de développement",
+    items: ["Git / GitHub", "Visual Studio Code", "Postman", "Omnis Studio"],
   },
   {
     table: "systemes",
@@ -84,7 +77,7 @@ export const PROJECTS = [
       "Hiérarchie de classes (héritage, classes abstraites) pour les pièces",
       "Validation des coups, chemins bloqués, captures",
       "Architecture modèle / contrôleur",
-			"Versionnée sur Git"
+      "Versionnée sur Git",
     ],
   },
   {
@@ -94,11 +87,11 @@ export const PROJECTS = [
     description:
       "Application web e-commerce développée avec Angular, permettant de parcourir un catalogue de produits et de gérer un panier d'achat.",
     bullets: [
-			"Catalogue de produits avec filtrage et recherche",
-			"Panier avec ajout et suppression d'articles et affichage du total en temps réel",
-			"Architecture en composants et services Angular, TypeScript",
-			"Versionné sur GitHub",
-		],
+      "Catalogue de produits avec filtrage et recherche",
+      "Panier avec ajout et suppression d'articles et affichage du total en temps réel",
+      "Architecture en composants et services Angular, TypeScript",
+      "Versionné sur GitHub",
+    ],
   },
 ];
 
